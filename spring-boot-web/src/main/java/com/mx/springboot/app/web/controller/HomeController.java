@@ -11,16 +11,58 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mx.springboot.app.web.model.Perfil;
+import com.mx.springboot.app.web.model.Usuario;
 import com.mx.springboot.app.web.model.Vacante;
+import com.mx.springboot.app.web.service.ICategoriasService;
+import com.mx.springboot.app.web.service.IUsuariosService;
 import com.mx.springboot.app.web.service.IVacantesService;
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private ICategoriasService serviceCategorias;
+	
 	
 	@Autowired
 	private IVacantesService serviceVacantes;
+	
+	
+	@Autowired
+   	private IUsuariosService serviceUsuarios;
+	
+	
+	
+	
+	
+	@GetMapping("/signup")
+	public String registrarse(Usuario usuario) {
+		return "formRegistro";
+	}
+	
+	@PostMapping("/signup")
+	public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
+		usuario.setEstatus(1); // Activado por defecto
+		usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
+		
+		// Creamos el Perfil que le asignaremos al usuario nuevo
+		Perfil perfil = new Perfil();
+		perfil.setId(3); // Perfil USUARIO
+		usuario.agregar(perfil);
+		
+		/**
+		 * Guardamos el usuario en la base de datos. El Perfil se guarda automaticamente
+		 */
+		serviceUsuarios.guardar(usuario);
+				
+		attributes.addFlashAttribute("msg", "El registro fue guardado correctamente!");
+		
+		return "redirect:/usuarios/index";
+	}
 	
 	
 	@GetMapping("/tabla")
@@ -69,9 +111,22 @@ public class HomeController {
 	}
 	
 	
+	
+	@GetMapping("/search")
+	public String buscar(@ModelAttribute("search") Vacante vacante) {
+		System.out.println("Buscando por : " + vacante);
+		return "home";
+	}
+	
+	
 	@ModelAttribute
 	public void setGenericos(Model model) {
+		Vacante vacanteSearch = new Vacante();
+		vacanteSearch.reset();
 		model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
+		model.addAttribute("search", vacanteSearch);
+		
 	}
 	
 }
