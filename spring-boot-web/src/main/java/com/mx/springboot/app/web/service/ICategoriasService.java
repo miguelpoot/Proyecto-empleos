@@ -16,5 +16,6 @@ public interface ICategoriasService {
 	Categoria buscarPorId(Integer idCategoria);		
 	void eliminar(Integer idCategoria);
 	Page<Categoria> buscarTodas(Pageable page);	
+	
 }
 

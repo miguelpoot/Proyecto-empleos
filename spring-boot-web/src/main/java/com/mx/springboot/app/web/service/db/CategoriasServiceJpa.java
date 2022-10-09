@@ -57,7 +57,7 @@ public class CategoriasServiceJpa implements ICategoriasService {
 	@Override
 	public Page<Categoria> buscarTodas(Pageable page) {
 		// TODO Auto-generated method stub
-		return null;
+		return categoriasRepo.findAll(page);
 	}
 
 
