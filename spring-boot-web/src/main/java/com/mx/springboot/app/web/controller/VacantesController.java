@@ -2,13 +2,11 @@ package com.mx.springboot.app.web.controller;
 
 
 
-import java.text.AttributedCharacterIterator.Attribute;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -115,7 +113,7 @@ public class VacantesController {
 		serviceVacantes.guardar(vacante);
 		attributes.addFlashAttribute("msg", "Registro Guardado");
 		System.out.println("Vacante: " + vacante);
-		return "redirect:/vacantes/index"; 
+		return "redirect:/vacantes/indexPaginate"; 
 	}
 	
 	
@@ -144,7 +142,7 @@ public class VacantesController {
 		System.out.println("Borrando vacante con id: " +idVacante );
 		serviceVacantes.eliminar(idVacante);
 		attributes.addFlashAttribute("msg", "La vacante fue eliminada!");
-		return "redirect:/vacantes/index";
+		return "redirect:/vacantes/indexPaginate";
 		
 	}
 	

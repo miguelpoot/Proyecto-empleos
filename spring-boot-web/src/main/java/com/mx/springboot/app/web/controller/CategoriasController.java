@@ -3,7 +3,6 @@ package com.mx.springboot.app.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,11 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mx.springboot.app.web.model.Categoria;
-import com.mx.springboot.app.web.model.Vacante;
 import com.mx.springboot.app.web.service.ICategoriasService;
 
 @Controller
@@ -62,7 +59,7 @@ public class CategoriasController {
 		// Guadamos el objeto categoria en la bd
 		serviceCategorias.guardar(categoria);
 		attributes.addFlashAttribute("msg", "Los datos de la categoría fueron guardados!");		
-		return "redirect:/categorias/index";
+		return "redirect:/categorias/indexPaginate";
 	}
 	
 	
@@ -85,8 +82,8 @@ public class CategoriasController {
 	public String eliminar(@PathVariable ("id") int idCategoria, RedirectAttributes attributes) {
 		System.out.println("Borrando vacante con id: " + idCategoria);
 		serviceCategorias.eliminar(idCategoria);
-		attributes.addFlashAttribute("msg", "La vacante fue eliminada!");
-		return "redirect:/categorias/index";
+		attributes.addFlashAttribute("msg", "La categoria fue eliminada!");
+		return "redirect:/categorias/indexPaginate";
 		
 	}
 	
@@ -95,3 +92,4 @@ public class CategoriasController {
 	
 	
 }
+
