@@ -1,9 +1,5 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-
-
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,11 +11,9 @@
     <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link th:href="@{/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
   </head>
-
-  <body>
 
    <header th:insert="fragments/menu :: menu-principal">
       
@@ -37,7 +31,7 @@
             <div class="card">
               <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}"></strong></h4>              
               <div class="card-body">
-                <h5 class="card-title"><strong>Categoría: </strong> <span></span></h5>
+                <h5 class="card-title"><strong>Categoría: </strong> <span th:text= "${vacante.categoria.nombre}"></span></h5>
                 <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vacante.fecha}"> </span></h6>                
                 <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vacante.salario}"></span></h6>
                 <p class="card-text" th:text="${vacante.descripcion}"></p>
@@ -45,7 +39,9 @@
                 <div class="card bg-light mb-3" >
                   <div class="card-body">
                     <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <p class="card-text"></p>
+                    
+                    <p class="card-text"  th:utext="${vacante.detalles}"></p>
+                    
                   </div>
                 </div>   
                 <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
