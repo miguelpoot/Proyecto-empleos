@@ -56,4 +56,10 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	.and().formLogin().permitAll();
 	}
 	
+	
+	//@Bean
+	//public PasswordEncoder passwordEncoder() {
+//	return new BCryptPasswordEncoder();
+//	}
+	
 }		

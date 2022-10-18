@@ -42,7 +42,8 @@ public class HomeController {
 	@Autowired
    	private IUsuariosService serviceUsuarios;
 	
-	
+	//@Autowired
+	//private PasswordEncoder passwordEncoder;
 	
 	
 	
@@ -53,6 +54,10 @@ public class HomeController {
 	
 	@PostMapping("/signup")
 	public String guardarRegistro(Usuario usuario, RedirectAttributes attributes) {
+		
+	//	String pwdPlano = usuario.getPassword();
+	//	String pwdEncriptado = 
+		
 		usuario.setEstatus(1); // Activado por defecto
 		usuario.setFechaRegistro(new Date()); // Fecha de Registro, la fecha actual del servidor
 		
