@@ -1,11 +1,12 @@
 package com.mx.springboot.app.web.service.db;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.mx.springboot.app.web.model.Usuario;
 import com.mx.springboot.app.web.repository.UsuariosRepository;
-
 import com.mx.springboot.app.web.service.IUsuariosService;
 
 @Service
@@ -24,6 +25,12 @@ public class UsuariosServiceJpa implements IUsuariosService {
 
 	public List<Usuario> buscarTodos() {
 		return usuariosRepo.findAll();
+	}
+
+	@Override
+	public Usuario buscarPorUsername(String username) {
+		
+		return  usuariosRepo.findByUsername(username);
 	}
 
 }

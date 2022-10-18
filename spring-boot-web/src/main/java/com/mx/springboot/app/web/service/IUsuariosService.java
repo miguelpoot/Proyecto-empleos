@@ -1,6 +1,7 @@
 package com.mx.springboot.app.web.service;
 
 import java.util.List;
+
 import com.mx.springboot.app.web.model.Usuario;
 
 
@@ -21,7 +22,11 @@ public interface IUsuariosService {
 	
 	// Ejercicio: Implementar método que recupera todos los usuarios. Usar vista de listUsuarios.html
 	List<Usuario> buscarTodos();
+	
+	Usuario buscarPorUsername(String  username);
+	
+	
 }
 
-// Agregar al archivo menu.html el link para acceder al listado de Usuarios y configurar el link del botón Registrarse
+
 
